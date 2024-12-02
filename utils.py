@@ -7,13 +7,46 @@ def split_line(line: str, delimiter: str) -> list:
     return line.strip().split(delimiter)
 
 
-def extract_numbers(line: str) -> list:
-    return list(map(int, map(str.strip, line)))
+def extract_numbers(line: str, delimiter: str = None) -> list:
+    """
+    Extracts integers from a given string, splitting it by a specified delimiter.
 
+    If no delimiter is specified, the function defaults to splitting the string
+    by any whitespace (spaces, tabs, etc.).
 
-def extract_numbers(line: str, delimiter: str) -> list:
-    line = line.split(delimiter)
-    return list(map(int, map(str.strip, line)))
+    Args:
+        line (str): The input string containing numbers.
+        delimiter (str, optional): The delimiter used to split the string.
+            - If `None`, the string is split by whitespace.
+
+    Returns:
+        list: A list of integers extracted from the input string.
+
+    Examples:
+        >>> extract_numbers("1 2 3")
+        [1, 2, 3]
+
+        >>> extract_numbers("4,5,6", ",")
+        [4, 5, 6]
+
+        >>> extract_numbers(" 7   8  9  ")
+        [7, 8, 9]
+
+        >>> extract_numbers("10|20|30", "|")
+        [10, 20, 30]
+
+        >>> extract_numbers("")
+        []
+
+        >>> extract_numbers("   ")
+        []
+
+    Notes:
+        - The function trims any extra whitespace around each split element.
+        - Raises a ValueError if any split element cannot be converted to an integer.
+    """
+    line = line.split(delimiter)  # Split the string using the specified delimiter
+    return list(map(int, map(str.strip, line)))  # Strip whitespace and convert to integers
 
 
 def extract_and_combine_numbers(line: str) -> int:

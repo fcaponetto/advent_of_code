@@ -43,6 +43,6 @@ def challenge_2(filename):
     print(output)
 
 
-# f = "data/simple1.txt"
+# f = "data/simple.txt"
 f = "data/challenge.txt"
 challenge_2(f)
